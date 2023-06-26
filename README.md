@@ -1,6 +1,12 @@
 # Sparse Fusion Benchmark
 This directory contains scripts for reproducing results in 
-the sparse fusion paper at SC22.  
+the sparse fusion paper at SC23.
+
+
+
+[![DOI](https://zenodo.org/badge/658530638.svg)](https://zenodo.org/badge/latestdoi/658530638)
+
+  
 
 
 # How to run the artifact
