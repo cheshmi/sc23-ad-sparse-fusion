@@ -10,7 +10,7 @@
 # this is for stampede2, should change for other servers
 #module load tacc-singularity/3.7.2
 
-BINPATH="singularity exec artifact.sif /source/fusion/build/demo/"
+BINPATH="singularity exec --env LD_LIBRARY_PATH=/opt/intel/oneapi/mkl/latest/lib/intel64 artifact.sif /source/fusion/build/demo/"
 LOGS=./logs/ 
 SCRIPTPATH=./
 UFDB=./mm/
