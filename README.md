@@ -18,7 +18,7 @@ the sparse fusion paper at SC23.
 
 * The singularity image should be pulled to the same directory that the code is cloned using: 
 ```    
-    singularity pull artifact.sif  library://kazem/ kazem/artifact22:latest 
+    singularity pull artifact.sif  library://kazem/kazem/artifact22:latest 
 ```    
 You can test the image by running the following command from the current directory:
 ```    
