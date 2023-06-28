@@ -4,7 +4,11 @@ the sparse fusion paper at SC23.
 
 
 
-[![DOI](https://zenodo.org/badge/658530638.svg)](https://zenodo.org/badge/latestdoi/658530638)
+
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8088414.svg)](https://doi.org/10.5281/zenodo.8088414)
+
+
 
   
 
