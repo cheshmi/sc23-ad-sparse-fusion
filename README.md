@@ -16,21 +16,28 @@ the sparse fusion paper at SC23.
 	cd sc23-ad-sparse-fusion
 ```
 
-* The singularity image should be pulled to the same directory that the code is cloned using: 
-```    
-    singularity pull artifact.sif  library://kazem/kazem/artifact22:latest 
-```    
+* The singularity image should be copied to the same directory that the code is cloned. The `*.sif` is provided as part of the artifact ( see [here](https://zenodo.org/record/8083006)). 
+
+ 
 You can test the image by running the following command from the current directory:
 ```    
     singularity exec artifact.sif /source/fusion/build/demo/sptrsv_sptrsv_demo
 ```    
 The output is a set of comma separated values such as specifications for a random matrix and execution time of different tools for the matrix.
 
+* You can run the following script and come back in half an hour:
+```
+bash run_sparse_fusion_ad.sh
+```
+
+
+Otherwise, you can follow below steps:
+
 * The datasets should be downloaded by calling:
 ```    
-    python dl_matrices.py 
+    bash dl_matrix_dataset.sh 
 ```    
-Matrices are downloaded into the _mm_ directory in the current directory (This might take a few hours and requires internet connection).
+Matrices are downloaded into the _mm_ directory in the current directory (This requires internet connection). Only 10 matrices are selected to speedup the evaluation time.
 
 * The sparse fusion (Experiment 1) experiment can be executed by emitting:
 ```
@@ -38,7 +45,7 @@ Matrices are downloaded into the _mm_ directory in the current directory (This m
 ```
 For running on compute node:
 ```
-	bash bash run_sfusion.sh
+	sbatch run_sfusion.sh
 ```
 You might need to update scripts with new absolute paths to the dataset and the image file. Also singularity module should be loaded for running on a server.
 
@@ -59,5 +66,10 @@ bash run_dagp.sh
 	bash run_gs.sh
 ```
     
-* Upon successful completion of experiments, all results should be stored as comma separated values (CSV) files under the _./logs/_ directory and are ready to be plotted. Separated Python scripts are provided and called inside the bash files to create plots. Plots are stored in the current directory as PDF files.
+* Upon successful completion of experiments, all results should be stored as comma separated values (CSV) files under the _./logs/_ directory and are ready to be plotted. You can call:
+```
+bash plot.sh
+```
+
+ to create plots. Plots are stored in the current directory as PDF files.
 

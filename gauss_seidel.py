@@ -102,7 +102,7 @@ def plot_scatter_chart_gs( all_data, legend_labels, x_axis_labels, y_axis_label,
     ax1.spines['top'].set_visible(False)
     ax1.spines['left'].set_color('k')
     ax1.spines['bottom'].set_color('k')
-    plt.yticks(Fontsize=14)
+#    plt.yticks(Fontsize=14)
     plt.xlim(-width)
     plt.xticks(rotation=45)
     if legend_need:
@@ -174,6 +174,10 @@ def plot_gs_scatter(input_path1):
         num = np.where(BEST_SF[0] == min_vals)[0]
         best_k[num] += 1
 
+    # number of fused
+    print("SF2: ", np.sum(BEST_SF_loop == 2), " - ", np.sum(BEST_SF_loop == 2)/n)
+    print("SF4: ", np.sum(BEST_SF_loop == 4), " - ", np.sum(BEST_SF_loop == 4)/n)
+    print("SF6: ", np.sum(BEST_SF_loop == 6), " - ", np.sum(BEST_SF_loop == 6)/n)
 
     JD_WF2V = in_csv_log[JD_WF2 + SECs].values
     JD_WF4V = in_csv_log[JD_WF4 + SECs].values
@@ -209,14 +213,49 @@ def plot_gs_scatter(input_path1):
             print( "===> ", i)
         num = np.where(BEST_SF[0] == min_vals)[0]
 
-    print("AVG Speedup over ParSy:", np.average(PARSYV/BEST_SF))
+    print("AVG Speedup over ParSy:", gmean(PARSYV/BEST_SF))
     print("Max Speedup over ParSy:", np.max(PARSYV / BEST_SF))
     print("Min Speedup over ParSy:", np.min(PARSYV / BEST_SF))
-    print("AVG Speedup over JD:", np.average(BEST_JD / BEST_SF))
+    print("AVG Speedup over JD:", gmean(BEST_JD / BEST_SF))
     print("Max Speedup over JD:", np.max(BEST_JD / BEST_SF))
     print("Min Speedup over JD:", np.min(BEST_JD / BEST_SF))
 
-    sw = False
+
+    fig, ax = plt.subplots()
+    #fig.suptitle('Scalability of SPILU0', fontsize=16)
+    ax.scatter(NZ, PARSYV, s=100, c='g', marker='x', label='GS ParSy')
+    ax.scatter(NZ, BEST_SF,s=80, facecolors='none', edgecolors='r', marker='o', label='GS Sparse Fusion')
+    ax.scatter(NZ, BEST_JD, s=100, c='b', marker='4', label='GS Joint-DAG')
+    # set grid off
+    ax.grid(False)
+    # set x and y axis label
+    ax.set_xlabel('NNZ', fontsize=20, fontweight='bold')
+    ax.set_ylabel('Time (seconds)', fontsize=20, fontweight='bold')
+    # set x and y axis tick size
+    ax.tick_params(axis='x', labelsize=20)
+    ax.tick_params(axis='y', labelsize=20)
+    # set right and top axis off
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    # set left and bottom axis bold
+    ax.spines['left'].set_linewidth(2)
+    ax.spines['bottom'].set_linewidth(2)
+    fig.set_size_inches(18, 8)
+    # set x tick black
+    ax.tick_params(axis='x', colors='black')
+    # set y tick black
+    ax.tick_params(axis='y', colors='black')
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+    # show legend
+    #fig.legend(handles, labels, fontsize=14, ncol=3, loc='upper center', frameon=True, borderaxespad=1)
+    ax.legend(loc='upper left', fontsize=20, ncol=3, frameon=True, borderaxespad=1)
+    ax.spines['left'].set_color('k')
+    ax.spines['bottom'].set_color('k')
+    #fig.show()
+    fig.savefig('gs_all.pdf', bbox_inches='tight')
+
+    sw = True
     if sw:
         filename = "GS_K_Fusion"
 
@@ -295,7 +334,7 @@ def plot_gs_scatter(input_path1):
 
 
 
-    plt.show()
+    #plt.show()
 
 
 
