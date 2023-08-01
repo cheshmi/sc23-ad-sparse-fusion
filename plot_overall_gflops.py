@@ -117,6 +117,7 @@ def clean_files(input_path):
     return file_list
 
 
+
 # define a dictionary to map kernel name to an id
 kernel_name_to_id = {'TRSV-TRSV':0, 'MV-TRSV':9, 'DAD-ILU0':1, 'TRSV-MV':2, 'IC0-TRSV':3, 'ILU0-TRSV':4, 'DAD-IC0':5}
 #label_name_to_id = {'TRSV-TRSV':0, 'MV-TRSV':9, 'Scal-ILU0':1, 'TRSV-MV':2, 'IC0-TRSV':3, 'ILU0-TRSV':4, 'Scal-IC0':5}
@@ -126,6 +127,8 @@ def plot(input_path1):
         None, None, None, None, None, None, None, None, None, None, None, None, None
     kernel_data_id = []
     csv_file_list = clean_files(input_path1)
+    df_flop, nnz, dim, mat_list_global = get_common_values(input_path1 + 'flop_counts.csv')
+    mat_no = len(mat_list_global)
     exe_ser = np.zeros((no_ker_types, mat_no))
     exe_sf, flop_sf, ins_sf, amo_sf = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
     exe_jlbc, flop_jlbc, ins_jlbc, amo_jlbc = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
@@ -133,7 +136,7 @@ def plot(input_path1):
     exe_jdagp, flop_jdagp, ins_jdagp, amo_jdagp = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
     exe_ulbc, flop_ulbc, ins_ulbc, amo_ulbc = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
     exe_umkl, flop_umkl, ins_umkl, amo_umkl = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
-    df_flop, nnz, dim, mat_list_global = get_common_values(input_path1 + 'flop_counts.csv')
+
     scalability = np.zeros((no_ker_types, mat_no))
     df_dagp = pd.read_csv(input_path1 + 'dagp_kernels.csv')
 

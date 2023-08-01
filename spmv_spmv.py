@@ -18,11 +18,13 @@ def plot_spmv_spmv(input_path1):
         None, None, None, None, None, None, None, None, None, None, None, None, None
     kernel_data_id = []
     csv_file_list = clean_files(input_path1)
+    df_flop, nnz, dim, mat_list_global = get_common_values(input_path1 + 'flop_counts.csv')
+    mat_no = len(mat_list_global)
     exe_ser = np.zeros((no_ker_types, mat_no))
     exe_sf, flop_sf, ins_sf = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
     exe_ulbc, flop_ulbc, ins_ulbc = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
     exe_umkl, flop_umkl, ins_umkl = np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no)), np.zeros((no_ker_types, mat_no))
-    df_flop, nnz, dim, mat_list_global = get_common_values(input_path1 + 'flop_counts.csv')
+    #df_flop, nnz, dim, mat_list_global = get_common_values(input_path1 + 'flop_counts.csv')
 
     if 'spmv_spmv_static.csv' in csv_file_list:
         df, ker_type, Serial = pre_process(input_path1 + 'spmv_spmv_static.csv', mat_list_global)

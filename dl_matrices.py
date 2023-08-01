@@ -13,7 +13,9 @@ download = 1
 def dl_save_list(matrix_directory, matrix_list_path):
     # specify what matrices should be downloaded
 
-    result = search(nzbounds=(100000, 150000), isspd=True, limit=10000000000, dtype='real')
+    result = search(nzbounds=(100000, 300000), isspd=True, limit=10000000000, dtype='real')
+    # uncomment the following line to download all SPD matrices
+    # result = search(nzbounds=(100000, 2500000000000), isspd=True, limit=1000000000000000, dtype='real')
 
     if download == 1:
         result.download(extract=True, destpath=matrix_directory)
