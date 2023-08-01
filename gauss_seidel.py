@@ -254,77 +254,77 @@ def plot_gs_scatter(input_path1):
     ax.spines['bottom'].set_color('k')
     #fig.show()
     fig.savefig('gs_all.pdf', bbox_inches='tight')
-
-    sw = True
-    if sw:
-        filename = "GS_K_Fusion"
-
-        half = 30
-        data_array1 = np.zeros((3, half))
-        # data_array[0, :] = SERIAL
-        data_array1[0, :] = BEST_SF[0:half]
-        data_array1[1, :] = PARSYV[0:half]
-        data_array1[2, :] = BEST_JD[0:half]
-        plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[0:half],
-                              "Seconds", filename, "linear", (0, 0), 1, True)
-
-        half1 = 63
-        data_array1 = np.zeros((3, half1 - half))
-        # data_array[0, :] = SERIAL
-        data_array1[0, :] = BEST_SF[half:half1]
-        data_array1[1, :] = PARSYV[half:half1]
-        data_array1[2, :] = BEST_JD[half:half1]
-        plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[half:half1],
-                              "Seconds", filename, "linear", (0, 1), 1, False)
-
-        data_array1 = np.zeros((3, n - half1))
-        # data_array[0, :] = SERIAL
-        data_array1[0, :] = BEST_SF[half1:n]
-        data_array1[1, :] = PARSYV[half1:n]
-        data_array1[2, :] = BEST_JD[half1:n]
-        plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[half1:n],
-                              "Seconds", filename, "linear", (0, 2), 1, False)
-
-        data_array_loopno = np.zeros((3, n))
-
-        # plt.legend(loc='upper left', fontsize=14, ncol=1, frameon=True)
-
-    else:
-        # data_array1 = np.zeros((3, n))
-        # # data_array[0, :] = SERIAL
-        # data_array1[0, :] = BEST_SF_loop[0:n]
-        # data_array1[1, :] = BEST_WF_loop[0:n]
-        # data_array1[2, :] = BEST_LBC_loop[0:n]
-        # plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[0:n],
-        #                       "Number of loops", filename, "linear", (0, 2), 1, False)
-
-        print("AVG Speedup over two loops:", np.average(SF2 / BEST_SF))
-        print("min Speedup over two loops:", np.min(SF2 / BEST_SF))
-        print("max Speedup over two loops:", np.max(SF2 / BEST_SF))
-        filename = "GS_K_Fusion_twomore"
-        legend =  ["GS-Sparse-Fusion \n(best of 2-6 loops)", "GS-Sparse-Fusion \n(only two loops)"]
-        half = 30
-        data_array2 = np.zeros((2, half))
-        # data_array[0, :] = SERIAL
-        data_array2[0, :] = BEST_SF[0:half]
-        data_array2[1, :] = SF2[0:half]
-        plot_scatter_chart_gs(data_array2, legend, NZ[0:half],
-                              "Seconds", filename, "linear", (0, 0), 1, True)
-
-        half1 = 63
-        data_array2 = np.zeros((2, half1 - half))
-        # data_array[0, :] = SERIAL
-        data_array2[0, :] = BEST_SF[half:half1]
-        data_array2[1, :] = SF2[half:half1]
-        plot_scatter_chart_gs(data_array2, legend, NZ[half:half1],
-                              "Seconds", filename, "linear", (0, 1), 1, False)
-
-        data_array2 = np.zeros((2, n - half1))
-        # data_array[0, :] = SERIAL
-        data_array2[0, :] = BEST_SF[half1:n]
-        data_array2[1, :] = SF2[half1:n]
-        plot_scatter_chart_gs(data_array2,legend, NZ[half1:n],
-                              "Seconds", filename, "linear", (0, 2), 1, False)
+    #
+    # sw = True
+    # if sw:
+    #     filename = "GS_K_Fusion"
+    #
+    #     half = 30
+    #     data_array1 = np.zeros((3, half))
+    #     # data_array[0, :] = SERIAL
+    #     data_array1[0, :] = BEST_SF[0:half]
+    #     data_array1[1, :] = PARSYV[0:half]
+    #     data_array1[2, :] = BEST_JD[0:half]
+    #     plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[0:half],
+    #                           "Seconds", filename, "linear", (0, 0), 1, True)
+    #
+    #     half1 = 63
+    #     data_array1 = np.zeros((3, half1 - half))
+    #     # data_array[0, :] = SERIAL
+    #     data_array1[0, :] = BEST_SF[half:half1]
+    #     data_array1[1, :] = PARSYV[half:half1]
+    #     data_array1[2, :] = BEST_JD[half:half1]
+    #     plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[half:half1],
+    #                           "Seconds", filename, "linear", (0, 1), 1, False)
+    #
+    #     data_array1 = np.zeros((3, n - half1))
+    #     # data_array[0, :] = SERIAL
+    #     data_array1[0, :] = BEST_SF[half1:n]
+    #     data_array1[1, :] = PARSYV[half1:n]
+    #     data_array1[2, :] = BEST_JD[half1:n]
+    #     plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[half1:n],
+    #                           "Seconds", filename, "linear", (0, 2), 1, False)
+    #
+    #     data_array_loopno = np.zeros((3, n))
+    #
+    #     # plt.legend(loc='upper left', fontsize=14, ncol=1, frameon=True)
+    #
+    # else:
+    #     # data_array1 = np.zeros((3, n))
+    #     # # data_array[0, :] = SERIAL
+    #     # data_array1[0, :] = BEST_SF_loop[0:n]
+    #     # data_array1[1, :] = BEST_WF_loop[0:n]
+    #     # data_array1[2, :] = BEST_LBC_loop[0:n]
+    #     # plot_scatter_chart_gs(data_array1, ["GS-Sparse-Fusion", "GS-ParSy", "GS-Joint-DAG"], NZ[0:n],
+    #     #                       "Number of loops", filename, "linear", (0, 2), 1, False)
+    #
+    #     print("AVG Speedup over two loops:", np.average(SF2 / BEST_SF))
+    #     print("min Speedup over two loops:", np.min(SF2 / BEST_SF))
+    #     print("max Speedup over two loops:", np.max(SF2 / BEST_SF))
+    #     filename = "GS_K_Fusion_twomore"
+    #     legend =  ["GS-Sparse-Fusion \n(best of 2-6 loops)", "GS-Sparse-Fusion \n(only two loops)"]
+    #     half = 30
+    #     data_array2 = np.zeros((2, half))
+    #     # data_array[0, :] = SERIAL
+    #     data_array2[0, :] = BEST_SF[0:half]
+    #     data_array2[1, :] = SF2[0:half]
+    #     plot_scatter_chart_gs(data_array2, legend, NZ[0:half],
+    #                           "Seconds", filename, "linear", (0, 0), 1, True)
+    #
+    #     half1 = 63
+    #     data_array2 = np.zeros((2, half1 - half))
+    #     # data_array[0, :] = SERIAL
+    #     data_array2[0, :] = BEST_SF[half:half1]
+    #     data_array2[1, :] = SF2[half:half1]
+    #     plot_scatter_chart_gs(data_array2, legend, NZ[half:half1],
+    #                           "Seconds", filename, "linear", (0, 1), 1, False)
+    #
+    #     data_array2 = np.zeros((2, n - half1))
+    #     # data_array[0, :] = SERIAL
+    #     data_array2[0, :] = BEST_SF[half1:n]
+    #     data_array2[1, :] = SF2[half1:n]
+    #     plot_scatter_chart_gs(data_array2,legend, NZ[half1:n],
+    #                           "Seconds", filename, "linear", (0, 2), 1, False)
 
 
 

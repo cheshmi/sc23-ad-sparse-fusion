@@ -25,7 +25,7 @@ the sparse fusion paper at SC23.
  
 You can test the image by running the following command from the current directory:
 ```    
-    singularity exec artifact.sif /source/fusion/build/demo/sptrsv_sptrsv_demo
+    singularity exec --env LD_LIBRARY_PATH=/opt/intel/oneapi/mkl/latest/lib/intel64 artifact.sif /source/fusion/build/demo/sptrsv_sptrsv_demo
 ```    
 The output is a set of comma separated values such as specifications for a random matrix and execution time of different tools for the matrix.
 
